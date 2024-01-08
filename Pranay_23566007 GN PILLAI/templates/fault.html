@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    
+    <title>Document</title>
+
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <div id="header">
+    <center><h1>FAULT PREDICTION IN ELECTRICAL SYSTEM</h1></center>
+    <br><br>
+    </div>
+    
+    <div id="body">
+    <center><h2>INSERT VOLTAGES</h2></center>
+    <form action="{{ url_for('predict_datapoint')}}" method="post",id="prediction-form">
+    <div id="volt">    
+         <div id="volt1">
+    <input type="text" name="Va" placeholder="Va" required>
+    <input type="text" name="Vb" placeholder="Vb" required>
+    <input type="text" name="Vc" placeholder="Vc" required>
+         </div>
+    </div>
+    <br>
+    <center><h2>INSERT CURRENTS</h2></center>
+    <div id="cur">
+        <div id="cur1">
+    <input type="text" name="Ia" placeholder="Ia" required>
+    <input type="text" name="Ib" placeholder="Ib" required>
+    <input type="text" name="Ic" placeholder="Ic" required>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div id="button">
+     <div id="butt1">   
+    <button type="submit" id="butt">PREDICT</button><br><br>
+     </div>
+    </div>
+    </form>
+    </div>
+
+
+    <div id="footer">
+
+        <div id="res">
+        <div>
+           <!--<h2><center>RESULT <br> {{result}}</center></h2>-->
+
+            <h2><center>Fault Prediction Result<center></h2>
+
+              {% if result == 0 %}
+                 <h2><center>No Fault</center></h2>
+              {% elif result == 1 %}
+                 <h2><center>Line A Line B Line C to Ground Fault</center></h2>
+              {% elif result == 2 %}
+                 <h2><center>Line A Line B to Ground Fault</center></h2>
+              {% elif result == 3 %}
+                 <h2><center>Line A to Ground Fault</center></h2>
+              {% elif result == 4 %}
+                 <h2><center>Line B to Line C Fault</center></h2>
+              {% elif result == 5 %}
+                 <h2><center>NO Fault</center></h2>
+              {% else %}
+                 <h2><center>Invalid Result</center></h2>
+              {% endif %}
+        </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
